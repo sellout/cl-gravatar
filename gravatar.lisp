@@ -42,8 +42,7 @@
 
 (defun profile (email)
   (json:decode-json-from-string
-   (babel:octets-to-string (drakma:http-request (generate-profile-url email
-                                                                      nil)))))
+   (babel:octets-to-string (drakma:http-request (profile-url email nil)))))
 
 (defun qr-code-url (email &key size)
   (generate-profile-url email
