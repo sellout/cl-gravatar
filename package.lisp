@@ -1,3 +1,3 @@
 (defpackage gravatar
   (:use #:cl)
-  (:export #:image-url #:profile #:qr-code-url))
+  (:export #:image-url #:profile #:profile-url #:qr-code-url))

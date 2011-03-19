@@ -35,14 +35,15 @@
                                                                 :utf-8))
                    +base-uri+))
 
-(defun profile (email &optional js-callback)
+(defun profile-url (email js-callback)
+  (generate-profile-url email
+                        :json
+                        (when js-callback `(("callback" . ,js-callback)))))
+
+(defun profile (email)
   (json:decode-json-from-string
-   (babel:octets-to-string
-    (drakma:http-request (generate-profile-url
-                          email
-                          :json
-                          (when js-callback
-                            `(("callback" . ,js-callback))))))))
+   (babel:octets-to-string (drakma:http-request (generate-profile-url email
+                                                                      nil)))))
 
 (defun qr-code-url (email &optional size)
   (generate-profile-url email
