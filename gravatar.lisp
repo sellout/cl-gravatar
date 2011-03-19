@@ -10,7 +10,7 @@
                                                                   email)))
                                    'list))))
 
-(defun image (email &key size default force-default-p rating)
+(defun image-url (email &key size default force-default-p rating)
   "DEFAULT may be either a URL to your own image, or one of :404, :mm,
    :identicon, :monsterid, :wavatar, or :retro. RATING may be one of :g, :pg,
    :r, or :x."
@@ -48,5 +48,5 @@
                           (when js-callback
                             `(("callback" . ,js-callback))))))))
 
-(defun qr-code (email &optional size)
+(defun qr-code-url (email &optional size)
   (generate-profile-url email :qr (when size `(("s" . ,size)))))
