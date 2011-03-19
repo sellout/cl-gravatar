@@ -17,23 +17,18 @@
   (let ((parameters ()))
     (when size (push (format nil "s=~d" size) parameters))
     (typecase default
-      (keyword (push (format nil "d=~a"
-                             (string-downcase (symbol-name default)))
-                     parameters))
+      (keyword (push (format nil "d=~a" (string-downcase default)) parameters))
       (string (push (format nil "d=~a" default) parameters)))
     (when force-default-p (push "f=y" parameters))
-    (when rating
-      (push (format nil "r=~a" (string-downcase (symbol-name rating)))
-            parameters))
+    (when rating (push (format nil "r=~a" (string-downcase rating)) parameters))
     (puri:merge-uris (format nil "avatar/~a~@[?~{~a~^&~}~]"
-                             (hash email)
-                             parameters)
+                             (hash email) parameters)
                      +base-uri+)))
 
 (defun generate-profile-url (email type parameters)
   (puri:merge-uris (format nil "g2-~a.~a~@[?~:{~a=~a~^&~}~]"
                            (hash email)
-                           (string-downcase (symbol-name type))
+                           (string-downcase type)
                            (mapcar (lambda (parameter)
                                      (list (car parameter) (cdr parameter)))
                                    parameters))
