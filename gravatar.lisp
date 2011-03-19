@@ -45,7 +45,7 @@
    (babel:octets-to-string (drakma:http-request (generate-profile-url email
                                                                       nil)))))
 
-(defun qr-code-url (email &optional size)
+(defun qr-code-url (email &key size)
   (generate-profile-url email
                         :qr
                         (when size `(("s" . ,(format nil "~d" size))))))
