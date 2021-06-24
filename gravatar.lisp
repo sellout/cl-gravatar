@@ -24,7 +24,8 @@
     (puri:merge-uris (format nil "avatar/~a~@[?~a~]"
                              (hash email)
                              (drakma::alist-to-url-encoded-string parameters
-                                                                  :utf-8))
+                                                                  :utf-8
+                                                                  'drakma:url-encode))
                      +base-uri+)))
 
 (defun generate-profile-url (email type parameters)
@@ -32,7 +33,8 @@
                            (hash email)
                            (string-downcase type)
                            (drakma::alist-to-url-encoded-string parameters
-                                                                :utf-8))
+                                                                :utf-8
+                                                                'drakma:url-encode))
                    +base-uri+))
 
 (defun profile-url (email js-callback)
